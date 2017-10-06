@@ -27,7 +27,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                    
-                    <TextBlock Grid.Row="0" Text="Cheese Burger" Foreground="Orange" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Row="0" Text="Shawarma Plate" Foreground="Orange" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBlock Grid.Row="1" Text="$7.5" Foreground="DarkOrange" FontSize="15" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center"/>
                 </Grid>
                 

@@ -35,5 +35,10 @@ namespace WPF_CoffeeShop
             frame_list.Content = new PG_MainDishes();
         }
 
+        private void B_CO_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
     }
 }

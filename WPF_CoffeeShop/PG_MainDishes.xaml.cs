@@ -33,13 +33,16 @@ namespace WPF_CoffeeShop
         double max;
         Color clr_orange = Color.FromRgb(255, 165, 0);
         public static int i;
-        
 
         #region Order Duplicate Numbers
         int I_cheese = 1;
-
         #endregion
 
+        //Add & Delete Variables
+        String btn_name;
+        String btn_content;
+        String btn_ID;
+        String price;
 
         // Form load event
         private void form_loaded(object sender, RoutedEventArgs e)
@@ -86,34 +89,35 @@ namespace WPF_CoffeeShop
         }
     #endregion
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        void Add()
         {
-           
-
             foreach (Window window in Application.Current.Windows)
             {
                 if (window.GetType() == typeof(MainWindow))
                 {
+                    var mainWindow = window as MainWindow;
 
-                    foreach(Button btn_tst in ((window as MainWindow).SP_plates).Children)
+                    foreach (Button btn_tst in (mainWindow.SP_plates).Children)
                     {
-                        if((btn_tst as Button).Name == "btn_cheeseburger")
+                        if ((btn_tst as Button).Name == btn_name)
                         {
+                            //Increasing the Quantity
                             I_cheese++;
                             String count = I_cheese.ToString();
                             String str;
-                            str = "CheeseBurger  $7.5  : "+ " " + count;
-                            Char[] TrimChar = { '(', ')', ',', '.', '.'};
-                            String Name = str.Trim(TrimChar);
-                            String Name2 = Name.TrimEnd(TrimChar);
-                            btn_tst.Content = Name2;
+                            //Button Content
+                            str = btn_ID + " :  " + count;
+                            //Button Status
+                            btn_tst.Content = str;
+                            btn_tst.Visibility = Visibility.Visible;
+                            btn_tst.IsEnabled = true;
 
                         }
 
                     }
 
                     i++;
-                    if(i < 2)
+                    if (i < 2)
                     {
 
                         //Creating the Button
@@ -132,9 +136,9 @@ namespace WPF_CoffeeShop
                         style.Triggers.Add(trigger);
 
                         Button btn = new Button();
-                        btn.Name = "btn_cheeseburger";
+                        btn.Name = btn_name;
                         btn.Height = 30;
-                        btn.Content = "CheeseBurger  $7.5  : " + " " + "1";
+                        btn.Content = btn_content;
                         btn.FontSize = 15;
                         btn.FontWeight = FontWeights.Bold;
                         btn.Foreground = Brushes.DarkOrange;
@@ -145,69 +149,83 @@ namespace WPF_CoffeeShop
                         btn.Style = style;
                         btn.Click += CB_del_Click;
 
-                        (window as MainWindow).SP_plates.Children.Add(btn);
+                        mainWindow.SP_plates.Children.Add(btn);
                     }
-                    
+
                 }
             }
-                       
         }
 
-        void Del_Loop(object sender)
+        void Remove()
         {
             foreach (Window window in Application.Current.Windows)
             {
                 if (window.GetType() == typeof(MainWindow))
                 {
-                    try
+                    var mainWindow = window as MainWindow;
+
+                    foreach (Button btn_tst in (mainWindow.SP_plates).Children)
                     {
-                        foreach (Button btn_tst in ((window as MainWindow).SP_plates).Children)
+
+                        if ((btn_tst as Button).Name == btn_name)
                         {
-
-                            if (btn_tst == null)
+                            if (I_cheese == 1)
                             {
-                                String str = "1";
+                                //Deactivate Button
+                                I_cheese = 0;
+                                btn_tst.Visibility = Visibility.Collapsed;
+                                btn_tst.IsEnabled = false;
                             }
 
-                            if ((btn_tst as Button).Name == "btn_cheeseburger")
-                                                            
-                                if (I_cheese == 1)
-                                {
-                                    (window as MainWindow).SP_plates.Children.Remove((Button)sender);
-                                    continue;
-
-                                }
-
-                                if (I_cheese != 0)
-                                {
-                                    I_cheese = I_cheese - 1;
-                                    String count = I_cheese.ToString();
-                                    String str;
-                                    str = "CheeseBurger  $7.5  : " + " " + count;
-                                    Char[] TrimChar = { '(', ')', ',', '.', '.' };
-                                    String Name = str.Trim(TrimChar);
-                                    String Name2 = Name.TrimEnd(TrimChar);
-                                    btn_tst.Content = Name2;
-                                }
-
+                            if (I_cheese != 0)
+                            {
+                                //Decrease Quanitity
+                                I_cheese = I_cheese - 1;
+                                String count = I_cheese.ToString();
+                                String str;
+                                str = btn_ID + " :  " + count;
+                                btn_tst.Content = str;
                             }
+                        }
 
-                        
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("test");
-                        throw new InvalidOperationException();
                     }
 
                 }
             }
         }
-    
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            var parent = sender as Button;
+            //Setting the Variables
+            #region Declaring;
+
+            if(parent.Name == "CheeseBurger")
+            {
+                price = "$7.5";
+                btn_ID = "CheeseBurger" + "  " + price;
+                btn_content = "CheeseBurger" + "  " + price + ":  1";
+                btn_name = "btn_cheeseburger";
+            }
+
+
+
+            #endregion; 
+
+            Add();
+        }
 
         private void CB_del_Click(object sender, RoutedEventArgs e)
         {
-            Del_Loop(sender);
+            var parent = sender as Button;
+            if (parent.Name == "CheeseBurger")
+            {
+                price = "$7.5";
+                btn_ID = "CheeseBurger" + "  " + price;
+                btn_content = "CheeseBurger" + "  " + price + ":  1";
+                btn_name = "btn_cheeseburger";
+            }
+            Remove();           
         }
 
     }
