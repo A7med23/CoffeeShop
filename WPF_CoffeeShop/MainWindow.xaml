@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPF_CoffeeShop"
         mc:Ignorable="d"
         Title="CoffeeShop" Height="470" Width="682"
         Loaded="Window_Loaded">
@@ -31,7 +30,7 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Buttons and MouseOver-MouseDown Colour change -->
-                <Button x:Name="B_plates" Grid.Column="0" HorizontalAlignment="Left" Width="109">
+                <Button x:Name="B_plates" Grid.Column="0" HorizontalAlignment="Left" Width="110">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Background" Value="WhiteSmoke"/>
@@ -70,7 +69,7 @@
                     </Button.Style>
                 </Button>
 
-                <Button x:Name="B_sand" Grid.Column="1" HorizontalAlignment="Left" Width="109">
+                <Button x:Name="B_sand" Grid.Column="1" HorizontalAlignment="Left" Width="110" Content="Sandwiches">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Background" Value="WhiteSmoke"/>
@@ -107,7 +106,7 @@
                     </Button.Style>
                 </Button>
 
-                <Button x:Name="B_dess" Grid.Column="2" HorizontalAlignment="Left" Width="109">
+                <Button x:Name="B_dess" Grid.Column="2" HorizontalAlignment="Left" Width="110">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Background" Value="WhiteSmoke"/>

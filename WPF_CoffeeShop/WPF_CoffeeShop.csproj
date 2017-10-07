@@ -65,18 +65,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Items\Plates.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PG_MainDishes.xaml">
+    <Page Include="PG_Plates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PG_MainDishes.xaml.cs">
-      <DependentUpon>PG_MainDishes.xaml</DependentUpon>
+    <Compile Include="PG_Plates.xaml.cs">
+      <DependentUpon>PG_Plates.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

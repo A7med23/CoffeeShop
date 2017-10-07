@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_CoffeeShop.Items;
 
 namespace WPF_CoffeeShop
 {
@@ -27,12 +28,13 @@ namespace WPF_CoffeeShop
         {
             InitializeComponent();
         }
-
-
         
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            frame_list.Content = new PG_MainDishes();
+            frame_list.Content = new PG_Plates()
+            {
+                
+            };
         }
 
         private void B_CO_Click(object sender, RoutedEventArgs e)
