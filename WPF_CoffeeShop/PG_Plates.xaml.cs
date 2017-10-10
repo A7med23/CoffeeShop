@@ -25,6 +25,16 @@ namespace WPF_CoffeeShop
     public partial class PG_Plates : Page
     {
 
+        int ChickenF_I;
+        int Steak_I;
+        int Salmon_I;
+        int Kebab_I ;
+        int ChickenM_I;
+        int FajitaS_I;
+        int Shrimp_I ;
+        int ChickenCS_I;
+        int GreekS_I ;
+        int TunaS_I;
 
         // Declare variable 
         bool allow = false;
@@ -323,19 +333,64 @@ namespace WPF_CoffeeShop
 
         //Adding and Removing Order Details
         #region Adding & removing Order Details
+
+        void Btn_Add()
+        {
+            foreach (Window window in Application.Current.Windows)
+            {
+                if(window.GetType() == typeof(MainWindow))
+                {
+                    var mainWindow = window as MainWindow;
+
+                    //Creating the Button
+                    Setter setter = new Setter();
+                    setter.Property = Button.BackgroundProperty;
+                    setter.Value = Brushes.White;
+
+                    Trigger trigger = new Trigger();
+                    trigger.Property = UIElement.IsMouseOverProperty;
+                    trigger.Value = true;
+                    trigger.Setters.Add(setter);
+
+                    Style style = new Style();
+                    style.TargetType = typeof(Button);
+                    style.Triggers.Clear();
+                    style.Triggers.Add(trigger);
+
+                    Button btn = new Button();
+                    btn.Name = btn_name;
+                    btn.Height = 30;
+                    btn.Content = btn_content;
+                    btn.FontSize = 15;
+                    btn.FontWeight = FontWeights.Bold;
+                    btn.Foreground = Brushes.DarkOrange;
+                    btn.BorderBrush = Brushes.Orange;
+                    btn.BorderThickness = new Thickness(1);
+                    btn.Margin = new Thickness(12, 3, 12, 0);
+                    btn.Background = Brushes.White;
+                    btn.Style = style;
+                    btn.Click += CB_del_Click;
+
+                    mainWindow.SP_plates.Children.Add(btn);
+                }
+            }            
+        }
+
         void Add()
         {
-                foreach (Window window in Application.Current.Windows)
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.GetType() == typeof(MainWindow))
                 {
-                    if (window.GetType() == typeof(MainWindow))
-                    {
-                        var mainWindow = window as MainWindow;
+                    var mainWindow = window as MainWindow;
 
-                        foreach (Button Orderbtn in (mainWindow.SP_plates).Children)
+                    foreach (Button Orderbtn in (mainWindow.SP_plates).Children)
+                    {
+                        if(Orderbtn.Name == btn_name)
                         {
-                            if ((Orderbtn as Button).Name == btn_name)
-                            {                                
-                                if(Orderbtn.Name == DC_chickenfillet.ID)
+                            if (Orderbtn.Name == DC_chickenfillet.ID)
+                            {
+                                if (ChickenF_I != 1)
                                 {
                                     //Increasing the Quantity
                                     I_ChickenF++;
@@ -349,7 +404,11 @@ namespace WPF_CoffeeShop
                                     Orderbtn.IsEnabled = true;
                                 }
 
-                                if (Orderbtn.Name == DC_steak.ID)
+                            }
+
+                            if (Orderbtn.Name == DC_steak.ID)
+                            {
+                                if (Steak_I != 1)
                                 {
                                     //Increasing the Quantity
                                     I_Steak++;
@@ -362,8 +421,11 @@ namespace WPF_CoffeeShop
                                     Orderbtn.Visibility = Visibility.Visible;
                                     Orderbtn.IsEnabled = true;
                                 }
+                            }
 
-                                if (Orderbtn.Name == DC_salmonfillet.ID)
+                            if (Orderbtn.Name == DC_salmonfillet.ID)
+                            {
+                                if (Salmon_I != 1)
                                 {
                                     //Increasing the Quantity
                                     I_Salmon++;
@@ -376,8 +438,11 @@ namespace WPF_CoffeeShop
                                     Orderbtn.Visibility = Visibility.Visible;
                                     Orderbtn.IsEnabled = true;
                                 }
+                            }
 
-                                if (Orderbtn.Name == DC_kebab.ID)
+                            if (Orderbtn.Name == DC_kebab.ID)
+                            {
+                                if (Kebab_I != 1)
                                 {
                                     //Increasing the Quantity
                                     I_Kebab++;
@@ -390,8 +455,11 @@ namespace WPF_CoffeeShop
                                     Orderbtn.Visibility = Visibility.Visible;
                                     Orderbtn.IsEnabled = true;
                                 }
+                            }
 
-                                if (Orderbtn.Name == DC_chickenM.ID)
+                            if (Orderbtn.Name == DC_chickenM.ID)
+                            {
+                                if (ChickenM_I != 1)
                                 {
                                     //Increasing the Quantity
                                     I_ChickenM++;
@@ -404,8 +472,11 @@ namespace WPF_CoffeeShop
                                     Orderbtn.Visibility = Visibility.Visible;
                                     Orderbtn.IsEnabled = true;
                                 }
+                            }
 
-                                if (Orderbtn.Name == DC_fajitaS.ID)
+                            if (Orderbtn.Name == DC_fajitaS.ID)
+                            {
+                                if (FajitaS_I != 1)
                                 {
                                     //Increasing the Quantity
                                     I_FajitaS++;
@@ -418,8 +489,11 @@ namespace WPF_CoffeeShop
                                     Orderbtn.Visibility = Visibility.Visible;
                                     Orderbtn.IsEnabled = true;
                                 }
+                            }
 
-                                if (Orderbtn.Name == DC_shrimpsteak.ID)
+                            if (Orderbtn.Name == DC_shrimpsteak.ID)
+                            {
+                                if (Shrimp_I != 1)
                                 {
                                     //Increasing the Quantity
                                     I_ShrimpSteak++;
@@ -432,8 +506,11 @@ namespace WPF_CoffeeShop
                                     Orderbtn.Visibility = Visibility.Visible;
                                     Orderbtn.IsEnabled = true;
                                 }
+                            }
 
-                                if (Orderbtn.Name == DC_chickenCS.ID)
+                            if (Orderbtn.Name == DC_chickenCS.ID)
+                            {
+                                if (ChickenCS_I != 1)
                                 {
                                     //Increasing the Quantity
                                     I_ChickenCS++;
@@ -447,7 +524,11 @@ namespace WPF_CoffeeShop
                                     Orderbtn.IsEnabled = true;
                                 }
 
-                                if (Orderbtn.Name == DC_greeksalad.ID)
+                            }
+
+                            if (Orderbtn.Name == DC_greeksalad.ID)
+                            {
+                                if (GreekS_I != 1)
                                 {
                                     //Increasing the Quantity
                                     I_GreekS++;
@@ -460,8 +541,11 @@ namespace WPF_CoffeeShop
                                     Orderbtn.Visibility = Visibility.Visible;
                                     Orderbtn.IsEnabled = true;
                                 }
+                            }
 
-                                if (Orderbtn.Name == DC_tunasalad.ID)
+                            if (Orderbtn.Name == DC_tunasalad.ID)
+                            {
+                                if (TunaS_I != 1)
                                 {
                                     //Increasing the Quantity
                                     I_TunaS++;
@@ -473,54 +557,15 @@ namespace WPF_CoffeeShop
                                     Orderbtn.Content = str;
                                     Orderbtn.Visibility = Visibility.Visible;
                                     Orderbtn.IsEnabled = true;
-                                }                                
+                                }
                             }
-
-                        }
-
-                    //Creating New button
-                    #region New Button
-
-                    i++;
-                        if(i < 2)
-                        {
-                            //Creating the Button
-                            Setter setter = new Setter();
-                            setter.Property = Button.BackgroundProperty;
-                            setter.Value = Brushes.White;
-
-                            Trigger trigger = new Trigger();
-                            trigger.Property = UIElement.IsMouseOverProperty;
-                            trigger.Value = true;
-                            trigger.Setters.Add(setter);
-
-                            Style style = new Style();
-                            style.TargetType = typeof(Button);
-                            style.Triggers.Clear();
-                            style.Triggers.Add(trigger);
-
-                            Button btn = new Button();
-                            btn.Name = btn_name;
-                            btn.Height = 30;
-                            btn.Content = btn_content;
-                            btn.FontSize = 15;
-                            btn.FontWeight = FontWeights.Bold;
-                            btn.Foreground = Brushes.DarkOrange;
-                            btn.BorderBrush = Brushes.Orange;
-                            btn.BorderThickness = new Thickness(1);
-                            btn.Margin = new Thickness(12, 3, 12, 0);
-                            btn.Background = Brushes.White;
-                            btn.Style = style;
-                            btn.Click += CB_del_Click;
-
-                            mainWindow.SP_plates.Children.Add(btn);
-
+                        }                                                                    
                         
-                        }
-                    #endregion
+                    }
 
                 }
-            }                               
+            }
+
         }
 
         void Remove()
@@ -760,14 +805,27 @@ namespace WPF_CoffeeShop
                 btn_ID = DC_chickenfillet.Name + " " + price;
                 btn_content = DC_chickenfillet.Name + " " + price + ":  1";
                 btn_name = DC_chickenfillet.ID;
+
+                ChickenF_I++;
+                if (ChickenF_I < 2)
+                {
+                    Btn_Add();
+                }
+
             }
 
             if (parent.Name == DC_steak.ID)
             {
                 price = DC_steak.Price;
-                btn_ID = DC_steak.Name + price;
+                btn_ID = DC_steak.Name + " " + price;
                 btn_content = DC_steak.Name + " " + price + ":  1";
                 btn_name = DC_steak.ID;
+
+                Steak_I++;
+                if (Steak_I < 2)
+                {
+                    Btn_Add();
+                }
             }
 
             if (parent.Name == DC_salmonfillet.ID)
@@ -776,6 +834,12 @@ namespace WPF_CoffeeShop
                 btn_ID = DC_salmonfillet.Name + " " + price;
                 btn_content = DC_salmonfillet.Name + " " + price + ":  1";
                 btn_name = DC_salmonfillet.ID;
+
+                Salmon_I++;
+                if (Salmon_I < 2)
+                {
+                    Btn_Add();
+                }
             }
 
             if (parent.Name == DC_kebab.ID)
@@ -784,6 +848,12 @@ namespace WPF_CoffeeShop
                 btn_ID = DC_kebab.Name + " " + price;
                 btn_content = DC_kebab.Name + " " + price + ":  1";
                 btn_name = DC_kebab.ID;
+
+                Kebab_I++;
+                if (Kebab_I < 2)
+                {
+                    Btn_Add();
+                }
             }
 
             if (parent.Name == DC_chickenM.ID)
@@ -792,14 +862,26 @@ namespace WPF_CoffeeShop
                 btn_ID = DC_chickenM.Name + " " + price;
                 btn_content = DC_chickenM.Name + " " + price + ":  1";
                 btn_name = DC_chickenM.ID;
+
+                ChickenM_I++;
+                if (ChickenM_I < 2)
+                {
+                    Btn_Add();
+                }
             }
 
             if (parent.Name == DC_fajitaS.ID)
             {
                 price = DC_fajitaS.Price;
-                btn_ID = DC_fajitaS.Name + price;
+                btn_ID = DC_fajitaS.Name + " " + price;
                 btn_content = DC_fajitaS.Name + " " + " " + price + ":  1";
                 btn_name = DC_fajitaS.ID;
+
+                FajitaS_I++;
+                if (FajitaS_I < 2)
+                {
+                    Btn_Add();
+                }
             }
 
             if (parent.Name == DC_shrimpsteak.ID)
@@ -808,6 +890,12 @@ namespace WPF_CoffeeShop
                 btn_ID = DC_shrimpsteak.Name + " " + price;
                 btn_content = DC_shrimpsteak.Name + " " + price + ":  1";
                 btn_name = DC_shrimpsteak.ID;
+
+                Shrimp_I++;
+                if (Shrimp_I < 2)
+                {
+                    Btn_Add();
+                }
             }
 
             if (parent.Name == DC_chickenCS.ID)
@@ -816,6 +904,12 @@ namespace WPF_CoffeeShop
                 btn_ID = DC_chickenCS.Name + " " + price;
                 btn_content = DC_chickenCS.Name + " " + price + ":  1";
                 btn_name = DC_chickenCS.ID;
+
+                ChickenCS_I++;
+                if (ChickenCS_I < 2)
+                {
+                    Btn_Add();
+                }
             }
 
             if (parent.Name == DC_greeksalad.ID)
@@ -824,6 +918,12 @@ namespace WPF_CoffeeShop
                 btn_ID = DC_greeksalad.Name + " " + price;
                 btn_content = DC_greeksalad.Name + " " + price + ":  1";
                 btn_name = DC_greeksalad.ID;
+
+                GreekS_I++;
+                if (GreekS_I < 2)
+                {
+                    Btn_Add();
+                }
             }
 
             if (parent.Name == DC_tunasalad.ID)
@@ -832,6 +932,13 @@ namespace WPF_CoffeeShop
                 btn_ID = DC_tunasalad.Name + " " + price;
                 btn_content = DC_tunasalad.Name + " " + price + ":  1";
                 btn_name = DC_tunasalad.ID;
+
+                TunaS_I++;
+                if (TunaS_I < 2)
+                {
+                    Btn_Add();
+                }
+
             }
             #endregion
 
